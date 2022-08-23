@@ -13,11 +13,19 @@ public class StoreFront {
 	public StoreFront() {
 		super();
 	}
+	
 	public StoreFront(String name, String address) {
 		super();
 		this.name = name;
 		this.address = address;
 	}
+	
+	public StoreFront(int id, String name, String address) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+	}
+	
 	public StoreFront(int id, String name, String address, ArrayList<Product> products, ArrayList<Order> orders) {
 		super();
 		this.id = id;

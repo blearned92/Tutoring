@@ -12,10 +12,24 @@ public class Customer {
 	public Customer() {
 		super();
 	}
+	
+	public Customer(String email) {
+		super();
+		this.email = email;
+	}
+	
 	public Customer(String name, String email) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.orders = new ArrayList<Order>();
+	}
+	
+	public Customer(int id, String name, String email) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.id = id;
 		this.orders = new ArrayList<Order>();
 	}
 	

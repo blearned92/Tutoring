@@ -11,64 +11,42 @@ import com.revature.models.Product;
 public class Driver {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		CustomerDao customerDao = new CustomerDao();
-		
-//		customerDao.addInstance(new Customer("Jim Halbert", "jim@email"));
-		
-		
 		
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter name");
-		String tempName = scanner.next();
-		System.out.println("Enter email");
-		String tempEmail = scanner.next();
-//	
-		Customer cust = new Customer(tempName, tempEmail);
-		customerDao.addInstance(cust);
+		CustomerDao customerDao = new CustomerDao();
+		boolean isRunning = true;
 		
-		
-//		System.out.println(cust.toString());
-//		
-//		
-//		Order order1 = new Order();
-//		String name = "Me";
-//		
-//		
-//		Product product = new Product("Cereal", 10);
-//		Customer customer = new Customer("Andy", "andy@andy.com");
-//		
-//		
-//		LineItem lineItem = new LineItem(product, 4);
-//		LineItem lineItem2 = new LineItem(product, 100000);
-//
-//		Order order = new Order();
-//		order.addItem(lineItem);
-//		order.addItem(lineItem2);
-//		
-//		
-//		order.addItem(new LineItem(new Product("name", 3), 3));
-//		
-////		for(LineItem item : order.getItemsList()) {
-////			System.out.println(item);
-////		}
-////		System.out.println(order.getTotalPrice());
-////		
-////		System.out.println(product.getName());
-//		
-//		customer.addOrder(order);
-//		
-////		System.out.println(customer.getOrders().get(0).toString());
-//		
-//		customer.getOrders().get(0).removeItem(lineItem2);
-//		for(LineItem item : customer.getOrders().get(0).getItemsList()) {
-//			System.out.println(item);
-//		}
-//		
-//		
-//		order.getItemsList().get(0).setQuantity(3);
-//
-//		System.out.println(order.getItemsList().get(0).getQuantity());
+		while(isRunning) {
+			
+			System.out.println("Wecome to Potpie Palace\n[1] Create Customer\n[2] Signin\n[x] Signout");
+			
+			switch (scanner.nextLine()) {
+			case "1":
+				System.out.println("Enter name");
+				String tempName = scanner.nextLine();
+				System.out.println("Enter email");
+				String tempEmail = scanner.nextLine();
+				Customer cust = new Customer(tempName, tempEmail);
+				customerDao.addInstance(cust);
+				break;
+			case "2":
+				System.out.println("Enter email");
+				String email = scanner.nextLine();
+				Customer tempCust = customerDao.getInstanceByField(new Customer(email));
+				if(tempCust == null) {
+					System.out.println("Customer not found!");
+				} else {
+					CustomerMenu.customerMenu(scanner, tempCust, customerDao);
+				}
+				break;
+			case "X":
+			case "x":
+				System.out.println("Goodbye");
+				isRunning = false;
+				break;
+			default:
+				break;
+			}
+		}
 	}
-
 }
